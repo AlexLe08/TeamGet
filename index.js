@@ -7,6 +7,8 @@ let express = require('express')
 let teams = require('./teams.json');
 let bodyParser = require('body-parser')
 
+let port = 1337
+
 let app = express();
 
 app.get("/teams", (request,response) => {
@@ -19,7 +21,7 @@ app.get("/teams/:EyeD", (request,response) => {
     if (Number(EyeD) === teams.id) {
         return true
     }else{
-        return request.param;EyeD === teams.abbr 
+        return request.param.EyeD === teams.abbr 
     }
        
 })
@@ -27,9 +29,20 @@ app.get("/teams/:EyeD", (request,response) => {
 app.use(bodyParser.json())
 // adds a json formatted team to the list of teams
 app.post('/teams', (request,response) => {
-    let 
+    teams.push(
+        request.body
+    )
+
+    console.log("Added " + request.body.abbreviation + " to the list")
+    response.send("Added " + request.body.abbreviation + " to the list")
 })
 
+
+//Otherwise
 app.all('*', (request,response) => {
     response.send("Error")
 })
+
+app.listen(port, () => {
+    console.log("this is my port: " + port)
+});
