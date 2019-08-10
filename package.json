@@ -5,7 +5,10 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon index.js"
+    "start": "nodemon index.js",
+    "dev": "npm run migrate:dev && npm run server:dev",
+    "server:dev": "./node_modules/.bin/nodemon index.js",
+    "migrate:dev": "./node_modules/.bin/sequelize db:migrate --env development --config ./config/sequelize.js"
   },
   "author": "",
   "license": "ISC",

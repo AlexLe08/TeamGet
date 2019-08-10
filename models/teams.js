@@ -14,6 +14,9 @@ module.exports = ((sequelize, Sequelize) => {
         abbreviation: {
             type: Sequelize.STRING,
         },
+        ballpark: {
+            type: Sequelize.STRING, defaultValue: ''
+        },
         conference: {
             type: Sequelize.ENUM('AFC', 'NFC'),
         },
